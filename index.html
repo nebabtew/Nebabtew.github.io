@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nebiyu Abtew | Data Science and Applied AI</title>
+<meta name="description" content="Nebiyu Abtew, Data Science and Business student at Truman State University and Break Through Tech AI Fellow. Machine learning, RAG pipelines, and audience analytics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F8F6;
+    --surface: #FFFFFF;
+    --ink: #17202B;
+    --muted: #55606D;
+    --line: #DCE1DE;
+    --accent: #1F6B5E;
+    --ochre: #B7791F;
+    --chip: #E8EFEC;
+    color-scheme: light;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12171D;
+      --surface: #1A2129;
+      --ink: #EDF1EF;
+      --muted: #A3ADB7;
+      --line: #2C3540;
+      --accent: #6CC3B0;
+      --ochre: #E2A94A;
+      --chip: #22303A;
+      color-scheme: dark;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 17px/1.6 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 3px solid var(--ochre); outline-offset: 3px; border-radius: 4px; }
+  h1, h2, h3 { font-family: "Bricolage Grotesque", "IBM Plex Sans", system-ui, sans-serif; line-height: 1.1; margin: 0; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; }
+  nav .mark { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 20px; color: var(--ink); text-decoration: none; }
+  nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; }
+  nav ul a { color: var(--muted); text-decoration: none; font-weight: 500; }
+  nav ul a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero { padding: 56px 0 72px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: end; }
+  .hero h1 { font-size: clamp(44px, 8vw, 88px); font-weight: 800; letter-spacing: -0.02em; }
+  .hero .role { font-size: 20px; color: var(--muted); margin: 18px 0 28px; max-width: 34ch; }
+  .hero .belief {
+    border-left: 4px solid var(--ochre);
+    padding: 4px 0 4px 20px;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .hero .belief small { display: block; font-family: "IBM Plex Sans", sans-serif; font-size: 15px; color: var(--muted); margin-top: 12px; font-weight: 400; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-block; padding: 11px 18px; border-radius: 8px; font-weight: 600; text-decoration: none; border: 2px solid var(--ink); color: var(--ink); }
+  .btn.primary { background: var(--ink); color: var(--bg); }
+  .btn:hover { border-color: var(--accent); }
+
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  section > .wrap > h2 { font-size: 34px; margin-bottom: 8px; }
+  .lede { color: var(--muted); margin: 0 0 36px; max-width: 60ch; }
+
+  /* Projects: a ledger, outcome on the right */
+  .project { display: grid; grid-template-columns: 1fr 200px; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+  .project:last-child { border-bottom: 0; }
+  .project h3 { font-size: 26px; font-weight: 700; }
+  .project h3 a { color: var(--ink); text-decoration: none; }
+  .project h3 a:hover { color: var(--accent); }
+  .project p { margin: 10px 0 14px; max-width: 62ch; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+  .tags li { background: var(--chip); padding: 3px 10px; border-radius: 6px; font-size: 14px; color: var(--ink); }
+  .outcome { text-align: right; align-self: start; }
+  .outcome strong { display: block; font-family: "Bricolage Grotesque", sans-serif; font-size: 40px; font-weight: 800; color: var(--accent); line-height: 1; }
+  .outcome span { font-size: 14px; color: var(--muted); }
+  .shot { margin-top: 16px; max-width: 100%; border-radius: 8px; border: 1px solid var(--line); }
+
+  /* Skills + path */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .skills dl { margin: 0; }
+  .skills dt { font-weight: 600; margin-top: 18px; }
+  .skills dd { margin: 4px 0 0; color: var(--muted); }
+  .path { list-style: none; margin: 0; padding: 0; }
+  .path li { padding: 14px 0 14px 22px; border-left: 2px solid var(--line); position: relative; }
+  .path li::before { content: ""; position: absolute; left: -7px; top: 22px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+  .path b { display: block; }
+  .path span { color: var(--muted); font-size: 15px; }
+
+  .contact { padding-bottom: 96px; }
+  .contact h2 { font-size: clamp(32px, 5vw, 52px); margin-bottom: 20px; }
+  footer { color: var(--muted); font-size: 14px; padding: 24px 0 40px; }
+
+  @media (max-width: 760px) {
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 32px; padding-top: 24px; }
+    .project { grid-template-columns: 1fr; gap: 12px; }
+    .outcome { text-align: left; order: -1; }
+    .two { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav aria-label="Main">
+    <a class="mark" href="#">Nebiyu Abtew</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <h1>Nebiyu Abtew</h1>
+      <p class="role">Data Science and Business at Truman State University. Break Through Tech AI Fellow with Cornell. I build ML systems out of messy, real-world data.</p>
+      <div class="actions">
+        <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">View resume (PDF)</a>
+        <a class="btn" href="https://github.com/nebabtew" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/nebabtew" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <p class="belief">Data is most powerful when it explains people, not just numbers.
+      <small>I started in media analytics in Addis Ababa and Dubai, measuring why audiences engage. That question pulled me into machine learning.</small>
+    </p>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <h2>Selected work</h2>
+      <p class="lede">Four projects, from a hackathon win to a RAG pipeline with a hallucination guardrail.</p>
+
+      <article class="project">
+        <div>
+          <h3><a href="https://github.com/nebabtew/vibefinder-rag" target="_blank" rel="noopener">VibeFinder 2.0</a></h3>
+          <p>An AI music recommender built as a four-stage RAG pipeline: weighted scoring, TF-IDF retrieval over a 24-document knowledge base, Gemini 2.5 Flash explanations, and a deterministic three-check guardrail that catches hallucinated answers.</p>
+          <ul class="tags"><li>Python</li><li>RAG</li><li>Gemini API</li><li>scikit-learn</li><li>Streamlit</li><li>pytest</li></ul>
+          <!-- Optional screenshot: upload vibefinder.png to this repo, then remove the comment marks below -->
+          <!-- <img class="shot" src="vibefinder.png" alt="VibeFinder app showing a recommendation with its explanation"> -->
+        </div>
+        <div class="outcome"><strong>Honors</strong><span>CodePath AI110</span></div>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3><a href="https://github.com/nebabtew/mirrormetrics" target="_blank" rel="noopener">MirrorMetrics</a></h3>
+          <p>TikTok analytics that read the comment section. It scrapes comments and uses Gemini 2.5 Flash for psychographic and virality analysis, surfacing purchase intent and emotional tone. This is where my marketing background meets ML.</p>
+          <ul class="tags"><li>Python</li><li>Gemini API</li><li>Web scraping</li><li>NLP</li></ul>
+        </div>
+        <div class="outcome"><strong>Comments</strong><span>turned into audience signal</span></div>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3><a href="https://github.com/nebabtew/Rideshareplatform" target="_blank" rel="noopener">Campus Rideshare Platform</a></h3>
+          <p>A ride-sharing app for students with real-time rider and driver matching, custom pricing, and multiple payment options. Built in a weekend with a team.</p>
+          <ul class="tags"><li>React</li><li>TypeScript</li><li>Supabase</li></ul>
+        </div>
+        <div class="outcome"><strong>3rd</strong><span>ACM x CCE Hackathon</span></div>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3><a href="https://github.com/nebabtew/Insurance-claim-predictor" target="_blank" rel="noopener">Insurance Claim Predictor</a></h3>
+          <p>Compared five regression models with GridSearchCV and cross-validation to predict insurance claim costs, then deployed the best one as a Streamlit app.</p>
+          <ul class="tags"><li>Python</li><li>scikit-learn</li><li>GridSearchCV</li><li>Streamlit</li></ul>
+        </div>
+        <div class="outcome"><strong>0.77</strong><span>adjusted R², best model</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap two">
+      <div class="skills">
+        <h2>Toolkit</h2>
+        <dl>
+          <dt>Core</dt><dd>Python, SQL, R, pandas, NumPy, scikit-learn</dd>
+          <dt>AI and ML</dt><dd>RAG pipelines, Gemini API, TF-IDF retrieval, neural networks, model tuning</dd>
+          <dt>Data and visualization</dt><dd>Tableau, Power BI, Streamlit, Plotly, Jupyter</dd>
+          <dt>Audience analytics</dt><dd>Google Analytics, A/B testing, SEO</dd>
+        </dl>
+      </div>
+      <div>
+        <h2>Path so far</h2>
+        <ul class="path">
+          <li><b>Content Analyst, D!NK Multimedia</b><span>Addis Ababa. Measured what made audiences engage.</span></li>
+          <li><b>Digital marketing, SAT &amp; Co.</b><span>Dubai</span></li>
+          <li><b>Presidential Scholar, Truman State University</b><span>Data Science and Business, class of 2028</span></li>
+          <li><b>CodePath TIP102 and AI110 (Honors)</b><span>Technical interview prep and applied AI</span></li>
+          <li><b>Co-organizer, TruHacks 2026</b><span>48-hour hackathon sponsored by Boeing</span></li>
+          <li><b>Break Through Tech AI Fellow, Cornell University</b><span>2026 to 2027</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Let's talk data, ML, or internships.</h2>
+      <div class="actions">
+        <a class="btn primary" href="mailto:nebabtew@gmail.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/nebabtew" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">Built by Nebiyu Abtew and hosted on GitHub Pages. Kirksville, Missouri.</footer>
+
+</body>
+</html>
